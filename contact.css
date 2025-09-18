@@ -5,6 +5,12 @@ body{
 .navbar-brand{
     font-family: 'Pacifico', cursive;
 }
+.navbar-toggler{
+    background: #2c3e50;
+}
+.navbar-toggler:hover{
+    background: rgba(0,0,0,0.1);
+}
 button{
     background: #3498db;
     color: white;
