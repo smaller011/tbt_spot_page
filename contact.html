@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="./contact.css">
+</head>
+<body>
+    <div class="col-md-7 mx-auto mt-4">
+            <h4 class="mb-3">Customer Information</h4>
+            <form id="contactForm" class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullname" placeholder="John Doe" required>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="example@email.com" required>
+              </div>
+              <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phoneNumber" placeholder="+234 7055987598" required>
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">Delivery Address</label>
+                <textarea class="form-control" id="address" rows="3" placeholder="123 Lorem street, Lagos" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="note" class="form-label">Special Requests (Optional)</label>
+                <textarea class="form-control" id="note" rows="2" placeholder="Any specific instructions?"></textarea>
+              </div>
+              <button type="submit" class="shadow">Submit Form</button>
+            </form>
+        </div>
+  <script src="./contact.js"></script>
+</body>
+</html>

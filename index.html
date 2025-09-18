@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TBT Spot</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="./CSS/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="./CSS/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="./CSS/aos.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">TBT Spot</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="./services.html">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-5 text-center bg-light">
+      <div class="container" data-aos="zoom-in" data-aos-duration="1000">
+        <h1 class="fw-bold">Welcome to TBT Spot</h1>
+        <p class="lead">Delicious snacks and meals for all your cravings</p>
+        <img
+          src="./Images/IMG-20250915-WA0063.jpg"
+          style="height: 500px; width: 350px;"
+          class="img-fluid rounded-circle shadow"
+          alt="Delicious food"
+        />
+      </div>
+    </section>
+
+    <!-- About Us -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000">
+            <h2 class="fw-bold">About Us</h2>
+            <p>
+              TBT Spot is a small business specializing in a variety of
+              delicious snacks and meals. Whether you're in the mood for small
+              chops, Asun, or a hearty shawarma, we've got you covered. Our
+              indoor and outdoor kitchen ensures fresh, made-to-order food every
+              time.
+            </p>
+          </div>
+          <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
+            <img
+              src="./Images/asun.jpg"
+              class="img-fluid rounded shadow"
+              alt="Asun dish"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <!-- Services -->
+    <section class="py-5 bg-light">
+      <div class="container text-center">
+        <h2 class="fw-bold mb-4" data-aos="fade-up" data-aos-duration="800">Our Services</h2>
+        <div class="row g-4">
+          <!-- Snacks -->
+          <div class="col-md-4" data-aos="zoom-in" data-aos-duration="800">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <i class="fas fa-cookie-bite display-4 text-warning"></i>
+                <h5 class="card-title mt-3">Snacks</h5>
+                <p class="card-text">
+                  A variety of small chops and finger foods.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Meals -->
+          <div class="col-md-4" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <i class="fas fa-utensils display-4 text-success"></i>
+                <h5 class="card-title mt-3">Meals</h5>
+                <p class="card-text">
+                  Hearty dishes made fresh in our indoor and outdoor kitchen.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shawarma -->
+          <div class="col-md-4" data-aos="zoom-in" data-aos-duration="1200">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <i class="fas fa-bread-slice display-4 text-danger"></i>
+                <h5 class="card-title mt-3">Shawarma</h5>
+                <p class="card-text">
+                  Delicious wraps filled with your choice of ingredients.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-light text-center">
+      <p class="mb-0">&copy; 2025 TBT Spot. All rights reserved.</p>
+    </footer>
+
+    <script src="./js/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="./js/bootstrap.min.js"></script>
+  </body>
+</html>
