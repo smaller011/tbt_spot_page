@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Uncle's Kitchen</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      color: #333;
+    }
+
+    .about-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8em;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 1.1em;
+      color: #555;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .team {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .member {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      padding: 25px;
+      width: 320px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .member img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .member h2 {
+      margin: 10px 0;
+      font-size: 1.6em;
+      color: #34495e;
+    }
+
+    .member p {
+      font-size: 0.95em;
+      color: #666;
+    }
+
+    .story {
+      margin-top: 60px;
+      text-align: center;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #444;
+    }
+
+    .story h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .story p {
+      margin-bottom: 20px;
+      font-size: 1.05em;
+      line-height: 1.8;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .team {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .member {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .intro {
+        font-size: 1em;
+        padding: 0 10px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./CSS/bootstrap.min.css">
+</head>
+<body>
+  <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">TBT Spot</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="./about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="./services.html">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="./contact.html">Contact/Order</a></li>
+            <li class="nav-item"><a class="nav-link" href="./menu.html">Menu</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  <div class="about-container">
+    <h1>About Us</h1>
+    <p class="intro">
+      Welcome to <strong>Uncle’s Kitchen</strong> – where food is more than just a meal, 
+      it’s an experience. We believe in cooking with love, passion, and creativity. 
+      Every dish we prepare is a reflection of our journey, our culture, and our dream 
+      of bringing people together at the table. 
+    </p>
+
+    <div class="team">
+      <div class="member">
+        <img src="uncle-picture.jpg" alt="Uncle's Photo">
+        <h2>Uncle [Full Name]</h2>
+        <p>
+          With a lifelong passion for food, Uncle has mastered the art of turning 
+          simple ingredients into extraordinary meals. His specialty lies in traditional 
+          recipes with a modern twist, blending flavors that create both comfort and surprise. 
+          His philosophy: <em>"Good food has the power to create lasting memories."</em>
+        </p>
+      </div>
+
+      <div class="member">
+        <img src="fiancee-picture.jpg" alt="Fiancée's Photo">
+        <h2>[Fiancée’s Full Name]</h2>
+        <p>
+          Bringing her creativity and warmth to the kitchen, she is the heart of presentation 
+          and hospitality. From perfect plating to innovative recipe ideas, she ensures 
+          every guest feels welcome. Together, she and Uncle share not only a love for food 
+          but also a vision of building a culinary brand that touches hearts.
+        </p>
+      </div>
+    </div>
+
+    <div class="story">
+      <h2>Our Story</h2>
+      <p>
+        Our journey began not just with a love for cooking, but with a dream: 
+        to create a space where everyone can feel at home through the meals we share. 
+        What started as a passion project in our own kitchen has grown into 
+        <strong>Uncle’s Kitchen</strong>, a brand committed to quality, authenticity, 
+        and unforgettable taste.
+      </p>
+      <p>
+        Cooking together as partners has been one of our greatest joys. We bring 
+        different strengths to the table – Uncle with his deep expertise and love 
+        for traditional dishes, and his fiancée with her eye for detail, modern creativity, 
+        and warm personality. Our combined efforts ensure that every dish tells a story.
+      </p>
+      <p>
+        We don’t just serve food – we serve experiences. Whether you’re trying our meals 
+        for the first time or you’ve been with us since the beginning, we’re honored to 
+        have you as part of our growing family. Thank you for supporting us and 
+        being part of our culinary adventure!
+      </p>
+    </div>
+  </div>
+</body>
+</html>

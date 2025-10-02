@@ -1,0 +1,11 @@
+section{
+    background-image: url(./Images/vegetables-set-left-black-slate.jpg);
+   
+}
+.content{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+h4{
+    border-radius: 2rem;
+    align-items: center;
+}
