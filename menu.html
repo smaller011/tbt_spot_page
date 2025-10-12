@@ -1,14 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./CSS/bootstrap.min.css">
-    <link rel="stylesheet" href="./menu.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TBT Spot - Menu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #111, #222);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(90deg, #e2b007, #ff9c00);
+      color: #000;
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    .menu-section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .menu-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      justify-items: center;
+    }
+
+    .menu-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 320px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.8s ease;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .menu-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .menu-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(255, 165, 0, 0.2);
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .menu-content {
+      padding: 1.5rem;
+      text-align: left;
+    }
+
+    .menu-content h3 {
+      color: #ffb700;
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-content ul {
+      list-style: none;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .price {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .order-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #ffb700, #ff8400);
+      border: none;
+      color: #000;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .order-btn:hover {
+      background: linear-gradient(90deg, #ff8400, #ffb700);
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ffb700a1;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      background: rgba(20, 20, 20, 0.95);
+      border-radius: 15px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 30px rgba(255, 183, 0, 0.2);
+      transform: scale(0.8);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .modal.active {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .modal h3 {
+      color: #ffb700;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .modal input {
+      padding: 0.7rem 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #333;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .modal button {
+      background: linear-gradient(90deg, #ffb700, #ff8400);
+      border: none;
+      padding: 0.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .modal button:hover {
+      background: linear-gradient(90deg, #ff8400, #ffb700);
+      box-shadow: 0 0 15px #ffb700a1;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.5rem;
+      color: #ffb700;
+      cursor: pointer;
+    }
+
+    /* Responsive layout */
+    @media (max-width: 768px) {
+      header {
+        font-size: 1.7rem;
+      }
+
+      .menu-section {
+        padding: 2rem 1rem;
+      }
+
+      .menu-card img {
+        height: 160px;
+      }
+
+      .menu-content {
+        padding: 1rem;
+      }
+
+      .menu-content h3 {
+        font-size: 1.2rem;
+      }
+
+      .order-btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./CSS/bootstrap.min.css">
 </head>
 <body>
-     <!-- Navbar -->
+  <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div class="container">
         <a class="navbar-brand fw-bold" href="#">TBT Spot</a>
@@ -31,124 +256,140 @@
         </div>
       </div>
     </nav>
+  <header>TBT Spot - Our Menu</header>
 
-    <section class=" text-light mx-auto">
-      <div class="content">
-        <h2 class="text-center">Our Menu</h2>
-        <div class="container">
-          <div class="row g-4">
-              <h2 class="text-center">Small Chops Options</h2>
-              <div class="col-md-4 col-sm-6">
-                 <h4 class="bg-warning text-dark p-1 " style="width: 120px;">Option 1</h4>
-                 <p>4 Puff-puff</p>
-                 <p>3 Mosa</p>
-                 <p>1 Spring roll</p>
-                 <p>1 Samosa</p>
-                 <p>1 Stick meat/ Gizzard</p>
-                 <h5 class="text-warning">N1200</h5>
-              </div>
-              <div class="col-md-4 col-sm-6">
-                 <h4 class="bg-warning text-dark p-1" style="width: 120px;">Option 2</h4>
-                 <p>4 Puff-puff</p>
-                 <p>3 Mosa</p>
-                 <p>1 Spring roll</p>
-                 <p>1 Samosa</p>
-                 <p>1 BBQ Chicken</p>
-                 <h5  class="text-warning">N1500</h5>
-              </div>
-              <div class="col-md-4 col-sm-6">
-                 <h4 class="bg-warning text-dark p-1" style="width: 120px;">Option 3</h4>
-                 <p>4 Puff-puff</p>
-                 <p>3 Mosa</p>
-                 <p>1 Spring roll</p>
-                 <p>1 Samosa</p>
-                 <p>1 Stick meat/ Gizzard</p>
-                 <p>1 BBQ Chicken</p>
-                 <h5  class="text-warning">N1700</h5>
-              </div>
-                 <div class="col-md-4 col-sm-6">
-                 <h4 class="bg-warning text-dark p-1" style="width: 120px;">Option 4</h4>
-                 <p>4 Puff-puff</p>
-                 <p>3 Mosa</p>
-                 <p>1 Spring roll</p>
-                 <p>1 Samosa</p>
-                 <p>1 Stick meat</p>
-                 <p>1 Gizzard</p>
-                 <p>1 BBQ Chicken</p>
-                 <h5  class="text-warning">N1900</h5>
-              </div>
-                 <div class="col-md-4 col-sm-6">
-                 <h4 class="bg-warning text-dark p-1" style="width: 120px;">Option 5</h4>
-                 <p>4 Puff-puff</p>
-                 <p>3 Mosa</p>
-                 <p>1 Spring roll</p>
-                 <p>1 Samosa</p>
-                 <p>1 Buttered Corn</p>
-                 <p>1 Peppered Snail</p>
-                 <p>1 BBQ Chicken</p>
-                 <h5  class="text-warning">N2500</h5>
-              </div>
-                 <div class="col-md-4 col-sm-6">
-                 <h4 class="bg-warning text-dark p-1" style="width: 120px;">Option 6</h4>
-                 <p>4 Puff-puff</p>
-                 <p>3 Mosa</p>
-                 <p>1 prawn in </p>
-                 <p>1 Samosa</p>
-                 <p>1 Fish in Batter</p>
-                 <p>1 Chicken</p>
-                 <h5  class="text-warning">N3500</h5>
-              </div>
-                 <div class="col-md-4 col-sm-6">
-                 <h4 class="bg-warning text-dark p-1" style="width: 120px;">Option 7</h4>
-                 <p>4 Puff-puff</p>
-                 <p>3 Mosa</p>
-                 <p>1 Spring roll</p>
-                 <p>1 Money Bag</p>
-                 <p>1 Corndog</p>
-                 <p>1 Fish in Batter</p>
-                 <p>1 Gizzard/Stickmeat</p>
-                 <p>1 Chicken</p>
-                 <h5  class="text-warning">N4000</h5>
-              </div>
-                 <div class="col-md-4 col-sm-6">
-                 <h4 class="bg-warning text-dark p-1" style="width: 120px;">Option 8</h4>
-                 <p>4 Puff-puff</p>
-                 <p>3 Mosa</p>
-                 <p>1 Spring roll</p>
-                 <p>1 Samosa</p>
-                 <p>1 Fish in Batter</p>
-                 <p>1 Peppered Snail</p>
-                 <p>1 Prawn</p>
-                 <p>1 BBQ chicken</p>
-                 <h5  class="text-warning">N4500</h5>
-              </div>
-          </div>    
-        </div> <hr>
-        <div class="container mt-3">
-         <h2 class="text-center bg-warning text-dark">Platter Packages</h2>
-         <h4>Grub spot special- N6,000</h4>
-         <p>2 mini shawarma, 2 mini buttered corn, 4 chicken winglets, 1 portion of small chops and ketchup</p>
-         <h4>Grub Spot Special XX- N6,500</h4>
-         <p>1 smoked catfish/croaker fish(sliced), 1 mini grilled turkey, 1 prawn and sausage kebab, fries, pepper sauce</p>
-         <h4>Abby's mini platter - N7,500</h4>
-         <p>10 puff-puff, 25 mosa, 10 spring roll, 5 chicken cuts </p>
-         <h4>Ariyike Box - N12,000</h4>
-         <p>25 puff-puff, 25 mosa, 10 spring roll, 10 samosa, 10 stick meat/gizzard</p>
-         <h4>BIMPS Box - N15,000</h4>
-         <p>25 puff-puff, 25 mosa, 10 spring roll, 10 samosa, 10 BBQ chicken</p>
-         <h4>LIZZY Box - N17,000</h4>
-         <p>35 puff-puff, 30 mosa, 10 spring roll, 10 samosa, 10 stick meat, 10 BBQ chicken</p>
-         <h4>TEE's Box</h4>
-         <p>35 puff-puff, 30 mosa, 10 spring roll, 10 samosa, 10 stick meat, 10 gizzard, 10 BBQ chicken</p>
-         <h4>LAMBA Box</h4>
-         <p>35 puff-puff, 25 mosa, 10 prawn in mayo, 10 samosa, 10 peppered gizzard or stick meat, 10 corndog, 10 chicken</p>
-        </div> <hr>
-        <div class="container text-warning">
-           Delivery fees apply and it determines by distance. <br>
-           Kindly note: Customized packages/pouches and kraft boxes comes at an extra cost 
+  <section class="menu-section">
+    <h2>Our Special Packages</h2>
+
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1601050690597-8df8d10b60ec" alt="Small Chops" />
+        <div class="menu-content">
+          <h3>Classic Small Chops</h3>
+          <ul>
+            <li>4 Puff-Puff</li>
+            <li>3 Mosa</li>
+            <li>1 Spring Roll</li>
+            <li>1 Samosa</li>
+            <li>Stick Meat</li>
+          </ul>
+          <div class="price">₦1200</div>
+          <button class="order-btn" data-package="Classic Small Chops">Order Now</button>
         </div>
-      </div>  
-    </section>
-    <script src="./js/bootstrap.min.js"></script>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1610440044361-9b6f9a907ff8" alt="BBQ Package" />
+        <div class="menu-content">
+          <h3>BBQ Lovers Pack</h3>
+          <ul>
+            <li>4 Puff-Puff</li>
+            <li>1 BBQ Chicken</li>
+            <li>1 Stick Gizzard</li>
+            <li>1 Spring Roll</li>
+            <li>Side Drink</li>
+          </ul>
+          <div class="price">₦2000</div>
+          <button class="order-btn" data-package="BBQ Lovers Pack">Order Now</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1625944230943-6b741b95e25d" alt="Asun Pack" />
+        <div class="menu-content">
+          <h3>Asun Deluxe</h3>
+          <ul>
+            <li>Asun (Goat Meat)</li>
+            <li>Fried Yam</li>
+            <li>2 Puff-Puff</li>
+            <li>1 Drink</li>
+            <li>1 Samosa</li>
+          </ul>
+          <div class="price">₦2500</div>
+          <button class="order-btn" data-package="Asun Deluxe">Order Now</button>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1625944516018-54ed379b04ba" alt="Shawarma Pack" />
+        <div class="menu-content">
+          <h3>Shawarma Combo</h3>
+          <ul>
+            <li>1 Shawarma</li>
+            <li>Chips</li>
+            <li>1 Drink</li>
+            <li>Extra Chicken</li>
+            <li>Small Chops Mix</li>
+          </ul>
+          <div class="price">₦3000</div>
+          <button class="order-btn" data-package="Shawarma Combo">Order Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="orderModal">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h3>Place Your Order</h3>
+      <form id="orderForm">
+        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="tel" id="phone" placeholder="Phone Number" required />
+        <input type="text" id="package" readonly />
+        <input type="number" id="quantity" placeholder="Quantity" min="1" required />
+        <button type="submit">Submit Order</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Scroll-in animation for menu cards
+    const cards = document.querySelectorAll('.menu-card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
+
+    // Modal functionality
+    const modalOverlay = document.getElementById('modalOverlay');
+    const orderModal = document.getElementById('orderModal');
+    const closeModal = document.getElementById('closeModal');
+    const orderForm = document.getElementById('orderForm');
+
+    document.querySelectorAll('.order-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const packageName = button.getAttribute('data-package');
+        document.getElementById('package').value = packageName;
+        modalOverlay.classList.add('active');
+        orderModal.classList.add('active');
+      });
+    });
+
+    closeModal.addEventListener('click', () => {
+      modalOverlay.classList.remove('active');
+      orderModal.classList.remove('active');
+    });
+
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('active');
+        orderModal.classList.remove('active');
+      }
+    });
+
+    orderForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you, ' + document.getElementById('name').value + '! Your order for ' + document.getElementById('package').value + ' has been received.');
+      modalOverlay.classList.remove('active');
+      orderModal.classList.remove('active');
+      orderForm.reset();
+    });
+  </script>
 </body>
 </html>
