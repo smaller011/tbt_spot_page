@@ -3,394 +3,525 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TBT Spot - Menu</title>
+  <title>TBT Spot | Small Chops, BBQ & Specials</title>
+  <link rel="stylesheet" href="./menu.css">
   <style>
+    /* ====== GLOBAL RESET ====== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #111, #222);
+      background-color: #0b0b0b;
       color: #fff;
       overflow-x: hidden;
     }
 
-    header {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: linear-gradient(90deg, #e2b007, #ff9c00);
-      color: #000;
-      font-weight: 700;
-      font-size: 2rem;
+    h1, h2, h3 {
+      color: #d4af37;
       letter-spacing: 1px;
     }
 
-    .menu-section {
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-
-    .menu-section h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      justify-items: center;
-    }
-
-    .menu-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      overflow: hidden;
-      width: 100%;
-      max-width: 320px;
-      transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.8s ease;
-      position: relative;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    .menu-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .menu-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 10px 25px rgba(255, 165, 0, 0.2);
-    }
-
-    .menu-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .menu-content {
-      padding: 1.5rem;
-      text-align: left;
-    }
-
-    .menu-content h3 {
-      color: #ffb700;
-      margin-bottom: 0.5rem;
-    }
-
-    .menu-content ul {
-      list-style: none;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .price {
-      font-weight: 600;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    .order-btn {
-      display: inline-block;
-      background: linear-gradient(90deg, #ffb700, #ff8400);
-      border: none;
-      color: #000;
-      padding: 0.7rem 1.5rem;
-      border-radius: 50px;
-      font-weight: 600;
+    button {
       cursor: pointer;
-      transition: all 0.3s ease;
+      border: none;
+      background: none;
     }
 
-    .order-btn:hover {
-      background: linear-gradient(90deg, #ff8400, #ffb700);
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #ffb700a1;
-    }
-
-    /* Modal Styles */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(6px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 1000;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal {
-      background: rgba(20, 20, 20, 0.95);
-      border-radius: 15px;
-      padding: 2rem;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 30px rgba(255, 183, 0, 0.2);
-      transform: scale(0.8);
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
-    .modal.active {
-      transform: scale(1);
-      opacity: 1;
-    }
-
-    .modal h3 {
-      color: #ffb700;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .modal form {
+    /* ====== HERO SECTION ====== */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.8), rgba(0,0,0,0.7)),
+                  url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
     }
 
-    .modal input {
-      padding: 0.7rem 1rem;
-      border: none;
-      border-radius: 8px;
-      background: #333;
-      color: #fff;
-      font-size: 1rem;
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #d4af37;
+      text-shadow: 0 0 20px rgba(212,175,55,0.5);
+      animation: fadeInDown 1.5s ease;
     }
 
-    .modal button {
-      background: linear-gradient(90deg, #ffb700, #ff8400);
-      border: none;
-      padding: 0.8rem;
-      border-radius: 50px;
-      font-weight: 600;
-      color: #000;
-      cursor: pointer;
-      transition: all 0.3s ease;
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      max-width: 600px;
+      line-height: 1.6;
+      color: #f0f0f0;
+      animation: fadeInUp 2s ease;
     }
 
-    .modal button:hover {
-      background: linear-gradient(90deg, #ff8400, #ffb700);
-      box-shadow: 0 0 15px #ffb700a1;
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .close-btn {
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .scroll-down {
       position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 1.5rem;
-      color: #ffb700;
-      cursor: pointer;
+      bottom: 40px;
+      width: 30px;
+      height: 50px;
+      border: 2px solid #d4af37;
+      border-radius: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 8px;
+      animation: bounce 2s infinite;
     }
 
-    /* Responsive layout */
-    @media (max-width: 768px) {
-      header {
-        font-size: 1.7rem;
-      }
+    .scroll-down::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: #d4af37;
+      border-radius: 50%;
+      animation: scrollDot 2s infinite;
+    }
 
-      .menu-section {
-        padding: 2rem 1rem;
-      }
+    @keyframes scrollDot {
+      0% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(16px); opacity: 0.4; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
 
-      .menu-card img {
-        height: 160px;
-      }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
 
-      .menu-content {
-        padding: 1rem;
-      }
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
 
-      .menu-content h3 {
-        font-size: 1.2rem;
-      }
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #d4af37;
+    }
 
-      .order-btn {
-        width: 100%;
-        text-align: center;
-        padding: 0.8rem;
-        font-size: 1rem;
-      }
+    .section-subtitle {
+      color: #ccc;
+      font-size: 1rem;
+      margin-bottom: 2rem;
     }
   </style>
-  
 </head>
 <body>
-  <!-- Navbar -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#">TBT Spot</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link active" href="./index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="./services.html">Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="./contact.html">Contact/Order</a></li>
-            <li class="nav-item"><a class="nav-link" href="./menu.html">Menu</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav> -->
+  <!-- ====== HERO SECTION ====== -->
+  <section class="hero">
+    <h1>TBT Spot</h1>
+    <p>Delicious Small Chops, BBQ & Street Specials — Freshly Made for You!</p>
+    <a href="#packages" class="scroll-down"></a>
+  </section>
+  <!-- END OF HERO SECTION -->
+   <!-- ====== EVENT & PARTY PACKAGES ====== -->
+  <section id="packages" class="packages-section">
+    <h2 class="section-title">Event & Party Packages</h2>
+    <p class="section-subtitle">Perfect combos for your guests — freshly made and beautifully packed.</p>
 
-  <header>TBT Spot - Our Menu</header>
-
-  <section class="menu-section">
-    <h2>Our Special Packages</h2>
-
-    <div class="menu-grid">
-      <div class="menu-card">
-        <img src="https://images.unsplash.com/photo-1601050690597-8df8d10b60ec" alt="Small Chops" />
-        <div class="menu-content">
-          <h3>Classic Small Chops</h3>
-          <ul>
-            <li>4 Puff-Puff</li>
-            <li>3 Mosa</li>
-            <li>1 Spring Roll</li>
-            <li>1 Samosa</li>
-            <li>Stick Meat</li>
-          </ul>
-          <div class="price">₦1200</div>
-          <button class="order-btn" data-package="Classic Small Chops">Order Now</button>
-        </div>
+    <div class="packages-container">
+      <!-- Package 1 -->
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1605475125609-63e5c67698a9?auto=format&fit=crop&w=500&q=80" alt="Classic Party Pack">
+        <h3>Classic Party Pack</h3>
+        <p>Small chops combo with samosa, puff-puff, spring rolls, and grilled chicken bites.</p>
+        <p class="price">₦15,000</p>
+        <button class="order-btn" data-item="Classic Party Pack">Order Now</button>
       </div>
 
-      <div class="menu-card">
-        <img src="https://images.unsplash.com/photo-1610440044361-9b6f9a907ff8" alt="BBQ Package" />
-        <div class="menu-content">
-          <h3>BBQ Lovers Pack</h3>
-          <ul>
-            <li>4 Puff-Puff</li>
-            <li>1 BBQ Chicken</li>
-            <li>1 Stick Gizzard</li>
-            <li>1 Spring Roll</li>
-            <li>Side Drink</li>
-          </ul>
-          <div class="price">₦2000</div>
-          <button class="order-btn" data-package="BBQ Lovers Pack">Order Now</button>
-        </div>
+      <!-- Package 2 -->
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1625944223928-27cfb88907b5?auto=format&fit=crop&w=500&q=80" alt="Deluxe Mix Package">
+        <h3>Deluxe Mix Package</h3>
+        <p>Loaded with samosa, puff-puff, spring rolls, chicken wings, gizzard, and asun.</p>
+        <p class="price">₦25,000</p>
+        <button class="order-btn" data-item="Deluxe Mix Package">Order Now</button>
       </div>
 
-      <div class="menu-card">
-        <img src="https://images.unsplash.com/photo-1625944230943-6b741b95e25d" alt="Asun Pack" />
-        <div class="menu-content">
-          <h3>Asun Deluxe</h3>
-          <ul>
-            <li>Asun (Goat Meat)</li>
-            <li>Fried Yam</li>
-            <li>2 Puff-Puff</li>
-            <li>1 Drink</li>
-            <li>1 Samosa</li>
-          </ul>
-          <div class="price">₦2500</div>
-          <button class="order-btn" data-package="Asun Deluxe">Order Now</button>
-        </div>
+      <!-- Package 3 -->
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1617196034796-73f3dc51e4a6?auto=format&fit=crop&w=500&q=80" alt="Premium Celebration Pack">
+        <h3>Premium Celebration Pack</h3>
+        <p>A full-party treat — barbecue chicken, gizzard kebabs, samosa, puff-puff, and spring rolls.</p>
+        <p class="price">₦35,000</p>
+        <button class="order-btn" data-item="Premium Celebration Pack">Order Now</button>
       </div>
 
-      <div class="menu-card">
-        <img src="https://images.unsplash.com/photo-1625944516018-54ed379b04ba" alt="Shawarma Pack" />
-        <div class="menu-content">
-          <h3>Shawarma Combo</h3>
-          <ul>
-            <li>1 Shawarma</li>
-            <li>Chips</li>
-            <li>1 Drink</li>
-            <li>Extra Chicken</li>
-            <li>Small Chops Mix</li>
-          </ul>
-          <div class="price">₦3000</div>
-          <button class="order-btn" data-package="Shawarma Combo">Order Now</button>
-        </div>
+      <!-- Package 4 -->
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1626074353761-cac806b61c53?auto=format&fit=crop&w=500&q=80" alt="Mega Executive Pack">
+        <h3>Mega Executive Pack</h3>
+        <p>Our top-tier combo with asun, sharwarma, grilled fish, samosa, puff-puff, and wings.</p>
+        <p class="price">₦50,000</p>
+        <button class="order-btn" data-item="Mega Executive Pack">Order Now</button>
+      </div>
+
+      <!-- Package 5 -->
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1606813902927-4f9f57b3c31d?auto=format&fit=crop&w=500&q=80" alt="Mini Bite Box">
+        <h3>Mini Bite Box</h3>
+        <p>Perfect for intimate hangouts — a mix of puff-puff, samosa, and spicy chicken chunks.</p>
+        <p class="price">₦10,000</p>
+        <button class="order-btn" data-item="Mini Bite Box">Order Now</button>
+      </div>
+
+      <!-- Package 6 -->
+      <div class="package-card">
+        <img src="https://images.unsplash.com/photo-1635262050922-63b14a51ed58?auto=format&fit=crop&w=500&q=80" alt="Grill Lovers Pack">
+        <h3>Grill Lovers Pack</h3>
+        <p>Includes barbecue chicken, grilled fish, asun, and small chops for that smoky flavor fix.</p>
+        <p class="price">₦40,000</p>
+        <button class="order-btn" data-item="Grill Lovers Pack">Order Now</button>
       </div>
     </div>
   </section>
 
-  <!-- Modal -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal" id="orderModal">
-      <span class="close-btn" id="closeModal">&times;</span>
-      <h3>Place Your Order</h3>
+  <style>
+    /* ====== PACKAGES SECTION ====== */
+    .packages-container {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding: 10px 20px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .packages-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .packages-container::-webkit-scrollbar-thumb {
+      background: rgba(212,175,55,0.4);
+      border-radius: 4px;
+    }
+
+    .package-card {
+      flex: 0 0 280px;
+      background: rgba(20,20,20,0.9);
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 1rem;
+      padding: 1rem;
+      scroll-snap-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .package-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(212,175,55,0.4);
+    }
+
+    .package-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    .package-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: #d4af37;
+    }
+
+    .package-card p {
+      font-size: 0.9rem;
+      color: #ddd;
+      line-height: 1.5;
+    }
+
+    .package-card .price {
+      margin: 10px 0;
+      color: #d4af37;
+      font-weight: 600;
+    }
+
+    .package-card button {
+      background: #d4af37;
+      color: #000;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .package-card button:hover {
+      background: #fff3c4;
+    }
+  </style>
+
+  <!-- ====== TBT SPECIALS SECTION ====== -->
+  <section id="specials">
+    <h2 class="section-title">TBT Specials</h2>
+    <p class="section-subtitle">Freshly made delicacies you’ll love 😋</p>
+
+    <div class="specials-grid">
+      <div class="special-card">
+        <img src="https://images.unsplash.com/photo-1613145993486-eca6d59b1b93?auto=format&fit=crop&w=600&q=80" alt="BBQ Fish">
+        <h3>BBQ Fish</h3>
+        <p class="price">₦5,000</p>
+        <button class="order-btn" data-item="BBQ Fish">Order Now</button>
+      </div>
+
+      <div class="special-card">
+        <img src="https://images.unsplash.com/photo-1625937759930-868aa4b3c6c2?auto=format&fit=crop&w=600&q=80" alt="Asun">
+        <h3>Asun</h3>
+        <p class="price">₦4,500</p>
+        <button class="order-btn" data-item="Asun">Order Now</button>
+      </div>
+
+      <div class="special-card">
+        <img src="https://images.unsplash.com/photo-1625938124652-2060917aaf10?auto=format&fit=crop&w=600&q=80" alt="Shawarma">
+        <h3>Shawarma</h3>
+        <p class="price">₦3,500</p>
+        <button class="order-btn" data-item="Shawarma">Order Now</button>
+      </div>
+
+      <div class="special-card">
+        <img src="https://images.unsplash.com/photo-1600973069298-5f3b5564c3b3?auto=format&fit=crop&w=600&q=80" alt="Puff Puff">
+        <h3>Puff Puff</h3>
+        <p class="price">₦2,000</p>
+        <button class="order-btn" data-item="Puff Puff">Order Now</button>
+      </div>
+
+      <div class="special-card">
+        <img src="https://images.unsplash.com/photo-1604908811690-0dcbf7cb9e9a?auto=format&fit=crop&w=600&q=80" alt="Samosa">
+        <h3>Samosa</h3>
+        <p class="price">₦2,500</p>
+        <button class="order-btn" data-item="Samosa">Order Now</button>
+      </div>
+
+      <div class="special-card">
+        <img src="https://images.unsplash.com/photo-1625938571647-7e26ad7d98d0?auto=format&fit=crop&w=600&q=80" alt="Spring Rolls">
+        <h3>Spring Rolls</h3>
+        <p class="price">₦2,500</p>
+        <button class="order-btn" data-item="Spring Rolls">Order Now</button>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* ====== SPECIALS GRID ====== */
+    .specials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 20px;
+    }
+
+    .special-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 20px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .special-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(212,175,55,0.3);
+    }
+
+    .special-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+  </style>
+
+  <!-- ====== ORDER MODAL ====== -->
+  <div id="orderModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="closeModal" class="close-btn">&times;</span>
+      <h3>Order Now</h3>
       <form id="orderForm">
-        <input type="text" id="name" placeholder="Full Name" required />
-        <input type="tel" id="phone" placeholder="Phone Number" required />
-        <input type="text" id="package" readonly />
-        <input type="number" id="quantity" placeholder="Quantity" min="1" required />
-        <button type="submit">Submit Order</button>
+        <label>Selected Item</label>
+        <input type="text" id="selectedItem" readonly />
+
+        <label>Your Name</label>
+        <input type="text" id="customerName" placeholder="Enter your name" required />
+
+        <label>Phone Number</label>
+        <input type="tel" id="customerPhone" placeholder="Enter your phone" required />
+
+        <label>Quantity</label>
+        <input type="number" id="quantity" min="1" value="1" required />
+
+        <div class="modal-buttons">
+          <button type="submit" class="submit-btn">Place Order</button>
+          <button type="button" class="cancel-btn" id="cancelOrder">Cancel</button>
+        </div>
       </form>
     </div>
   </div>
 
+  <style>
+    /* ====== MODAL STYLES ====== */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: opacity 0.4s ease;
+    }
+
+    .hidden { display: none; }
+
+    .modal-content {
+      background: rgba(20,20,20,0.95);
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      color: #fff;
+      animation: modalIn 0.4s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(-20px) scale(0.9); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-content h3 {
+      color: #d4af37;
+      margin-bottom: 20px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 1.8rem;
+      color: #d4af37;
+      cursor: pointer;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    label {
+      font-size: 0.9rem;
+      text-align: left;
+      color: #ccc;
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .modal-buttons {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .submit-btn {
+      background: linear-gradient(90deg, #d4af37, #b8911a);
+      color: #000;
+      font-weight: 600;
+      border-radius: 30px;
+      padding: 10px 15px;
+      flex: 1;
+    }
+
+    .cancel-btn {
+      background: #333;
+      color: #d4af37;
+      border-radius: 30px;
+      padding: 10px 15px;
+      flex: 1;
+    }
+  </style>
+  <!-- END OF MODAL SECTION -->
+  <!-- ====== JAVASCRIPT LOGIC ====== -->
   <script>
-    // Scroll-in animation for menu cards
-    const cards = document.querySelectorAll('.menu-card');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    // Wait until DOM is ready
+    document.addEventListener("DOMContentLoaded", () => {
+      const orderButtons = document.querySelectorAll(".order-btn");
+      const modal = document.getElementById("orderModal");
+      const closeModal = document.getElementById("closeModal");
+      const cancelOrder = document.getElementById("cancelOrder");
+      const selectedItemInput = document.getElementById("selectedItem");
+      const orderForm = document.getElementById("orderForm");
+
+      // Open modal when any "Order Now" is clicked
+      orderButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const itemName = btn.dataset.item;
+          selectedItemInput.value = itemName;
+          modal.classList.remove("hidden");
+          document.body.style.overflow = "hidden"; // prevent scroll while modal open
+        });
       });
-    }, { threshold: 0.2 });
 
-    cards.forEach(card => observer.observe(card));
+      // Close modal handlers
+      const hideModal = () => {
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto";
+        orderForm.reset();
+      };
 
-    // Modal functionality
-    const modalOverlay = document.getElementById('modalOverlay');
-    const orderModal = document.getElementById('orderModal');
-    const closeModal = document.getElementById('closeModal');
-    const orderForm = document.getElementById('orderForm');
+      closeModal.addEventListener("click", hideModal);
+      cancelOrder.addEventListener("click", hideModal);
 
-    document.querySelectorAll('.order-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        const packageName = button.getAttribute('data-package');
-        document.getElementById('package').value = packageName;
-        modalOverlay.classList.add('active');
-        orderModal.classList.add('active');
+      // Close modal when clicking outside modal-content
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) hideModal();
       });
-    });
 
-    closeModal.addEventListener('click', () => {
-      modalOverlay.classList.remove('active');
-      orderModal.classList.remove('active');
-    });
+      // Handle form submit (you can connect this to WhatsApp or backend later)
+      orderForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("customerName").value;
+        const phone = document.getElementById("customerPhone").value;
+        const quantity = document.getElementById("quantity").value;
+        const item = selectedItemInput.value;
 
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) {
-        modalOverlay.classList.remove('active');
-        orderModal.classList.remove('active');
-      }
-    });
-
-    orderForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Thank you, ' + document.getElementById('name').value + '! Your order for ' + document.getElementById('package').value + ' has been received.');
-      modalOverlay.classList.remove('active');
-      orderModal.classList.remove('active');
-      orderForm.reset();
+        alert(
+          `Thank you, ${name}! Your order for ${quantity} × ${item} has been received.\nWe’ll contact you soon at ${phone}.`
+        );
+        hideModal();
+      });
     });
   </script>
+  <script src="./menu.js"></script>
 </body>
 </html>
