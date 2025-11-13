@@ -1,11 +1,11 @@
 /* script.js
    JS logic for TBT Spot menu page
    Handles horizontal scrolling for Event Packages & Specials,
-   adds arrow controls, and basic auto-scroll behavior.
+   adds arrow controls (no auto-scroll).
 */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Helper function to make a section horizontally scrollable with arrows + auto-scroll
+  // Helper function to make a section horizontally scrollable with arrows only
   function makeScrollable(containerSelector, leftBtnSelector, rightBtnSelector) {
     const container = document.querySelector(containerSelector);
     const leftBtn = document.querySelector(leftBtnSelector);
@@ -13,36 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!container) return;
 
-    let scrollAmount = 0;
     const cardWidth = container.querySelector("div")?.offsetWidth || 280;
 
-    // Scroll controls
+    // Scroll controls (manual)
     leftBtn?.addEventListener("click", () => {
       container.scrollBy({ left: -cardWidth - 20, behavior: "smooth" });
     });
+
     rightBtn?.addEventListener("click", () => {
       container.scrollBy({ left: cardWidth + 20, behavior: "smooth" });
-    });
-
-    // Auto scroll every 4 seconds (mobile-friendly)
-    let autoScrollInterval = setInterval(() => {
-      if (window.innerWidth < 768) {
-        container.scrollBy({ left: cardWidth + 20, behavior: "smooth" });
-        scrollAmount += cardWidth + 20;
-        if (scrollAmount >= container.scrollWidth - container.clientWidth) {
-          scrollAmount = 0;
-          container.scrollTo({ left: 0, behavior: "smooth" });
-        }
-      }
-    }, 4000);
-
-    // Pause auto scroll on hover (desktop)
-    container.addEventListener("mouseenter", () => clearInterval(autoScrollInterval));
-    container.addEventListener("mouseleave", () => {
-      if (window.innerWidth < 768) return; // don’t restart auto-scroll on desktop
-      autoScrollInterval = setInterval(() => {
-        container.scrollBy({ left: cardWidth + 20, behavior: "smooth" });
-      }, 4000);
     });
   }
 
@@ -59,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const orderForm = document.getElementById("orderForm");
 
   if (modal) {
+    // Open modal when "Order Now" is clicked
     orderButtons.forEach(btn => {
       btn.addEventListener("click", () => {
         const itemName = btn.dataset.item;
@@ -68,18 +48,21 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    // Hide modal function
     const hideModal = () => {
       modal.classList.add("hidden");
       document.body.style.overflow = "auto";
       orderForm?.reset();
     };
 
+    // Close modal events
     closeModal?.addEventListener("click", hideModal);
     cancelOrder?.addEventListener("click", hideModal);
     modal?.addEventListener("click", (e) => {
       if (e.target === modal) hideModal();
     });
 
+    // Handle order form submit
     orderForm?.addEventListener("submit", (e) => {
       e.preventDefault();
       const name = document.getElementById("customerName").value;

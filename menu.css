@@ -237,3 +237,55 @@ img{max-width:100%;display:block}
 
 /* small helper for hidden content in HTML flow */
 .hidden{display:none}
+
+
+/* ===== Scroll Arrows ===== */
+.scroll-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto 15px;
+  padding: 0 10px;
+}
+
+.scroll-btn {
+  background: rgba(212,175,55,0.15);
+  border: 1px solid rgba(212,175,55,0.3);
+  color: #d4af37;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.scroll-btn:hover {
+  background: #d4af37;
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* Responsive: One Card View on Mobile */
+@media (max-width: 768px) {
+  .scroll-controls {
+    display: none;
+  }
+
+  .packages-container,
+  .specials-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+  }
+
+  .package-card,
+  .special-card {
+    flex: 0 0 90%;
+    scroll-snap-align: center;
+  }
+}
